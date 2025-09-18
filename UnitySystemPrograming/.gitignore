@@ -82,3 +82,6 @@ crashlytics-build.properties
 /[Aa]ssets/Fonts
 /[Aa]ssets/Image
 /[Aa]ssets/TextMesh Pro
+/[Aa]ssets/Resources/Animations
+/[Aa]ssets/Resources/Art
+/[Aa]ssets/Resources/Audio
