@@ -5,15 +5,18 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] float speed = 10f;
     [SerializeField] float rororo = 0.1f;
     [SerializeField] float rotateSpeed = 120f;
+    
+    bool moveToDest = false;
+    Vector3 destPos;
 
 
     void Start() {
         Managers.Input.KeyAction -= OnKeyBoard;
         Managers.Input.KeyAction += OnKeyBoard;
+
+        Managers.Input.MouseAction -= OnMouseClicked;
+        Managers.Input.MouseAction += OnMouseClicked;
     }
-
-
-
 
     void Update() {
 
@@ -51,6 +54,21 @@ public class PlayerController : MonoBehaviour {
         //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(-1f, 0f, 0f) * Time.deltaTime), rororo);
         //}
 
+        if (moveToDest) {
+
+            Vector3 dir = destPos - transform.position;
+
+            if (dir.magnitude < 0.0001f) {
+                moveToDest = false;
+            }
+            else {
+                float moveDist = Mathf.Clamp(speed * Time.deltaTime, 0, dir.magnitude);
+
+                transform.position += transform.position + dir.normalized * moveDist;
+                transform.LookAt(destPos);
+            }
+        }
+
     }
 
     void OnKeyBoard() {
@@ -69,5 +87,28 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.D)) {
             transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
         }
+
+        moveToDest = false;
     }
+
+    void OnMouseClicked(Define.MouseEvent evt) {
+
+        if (evt != Define.MouseEvent.Click) return;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("wall"))) {
+
+            destPos = hit.point;
+
+            moveToDest = true;
+
+            // Debug.Log($"Raycast Camera : {hit.collider.gameObject.name}");
+        }
+    }
+
 }
