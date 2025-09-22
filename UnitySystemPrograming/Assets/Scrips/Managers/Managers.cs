@@ -1,8 +1,8 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
-public class Managers : MonoBehaviour {
-
-    static Managers s_instance; // ¿Ø¿œº∫¿Ã ∫∏¿Âµ 
+public class Managers : MonoBehaviour
+{
+    static Managers s_instance; // Ïú†ÏùºÏÑ±Ïù¥ Î≥¥Ïû•Îê®
 
     public static Managers Instance { get { Init(); return s_instance; } }
 
@@ -12,21 +12,24 @@ public class Managers : MonoBehaviour {
     public static InputManager Input { get { return Instance.im; } }
     public static ResourceManager Resource { get { return Instance.rm; } }
 
-    void Start() {
+    void Start()
+    {
         Init();
     }
 
-    void Update() {
+    void Update()
+    {
         im.OnUpdate();
     }
 
-    static void Init() {
-
-        if (s_instance == null) {
-
+    static void Init()
+    {
+        if (s_instance == null)
+        {
             GameObject go = GameObject.Find("@Managers");
 
-            if (go == null) {
+            if (go == null)
+            {
                 go = new GameObject { name = "@Managers" };
                 go.AddComponent<Managers>();
             }

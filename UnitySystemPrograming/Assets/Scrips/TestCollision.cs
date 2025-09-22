@@ -1,34 +1,38 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
-public class TestCollision : MonoBehaviour {
-
-    void OnCollisionEnter(Collision collision) {
-        // ÀÏ¹İÀûÀÎ
+public class TestCollision : MonoBehaviour
+{
+    void OnCollisionEnter(Collision collision)
+    {
+        // ì¼ë°˜ì ì¸
         Debug.Log("Collision!");
     }
 
-    void OnTriggerEnter(Collider other) {
-        // isTrigger¸¦ Ä×À»¶¼
+    void OnTriggerEnter(Collider other)
+    {
+        // isTriggerë¥¼ ì¼°ì„ë–¼
         Debug.Log("Trigger!!!");
     }
 
-    void OnTriggerExit(Collider other) {
-        // ³ª°¥¶§
+    void OnTriggerExit(Collider other)
+    {
+        // ë‚˜ê°ˆë•Œ
         Debug.Log("Trigger!!! EXEX");
     }
 
-    void OnTriggerStay(Collider other) {
-        // ±â´Ş?
+    void OnTriggerStay(Collider other)
+    {
+        // ê¸°ë‹¬?
         Debug.Log("Trigger!!! STST");
     }
 
-    void Update() {
+    void Update()
+    {
         // Local <-> World <-> Viewport <-> Screen
         // 
-        
 
-        // Æ®·£½ºÆû ´ÙÀÌ·º¼Ç = ¸Å°³º¯¼ö·ÎÀÇ ¹æÇâÀ» ¹İÈ¯ÇÔ
-        // ÀÌ°É Vector3.forward¿Í ¹Ù²Ù¸é ¹Ù¶óº¸´Â ¹æÇâ¿¡ µû¶ó ¹Ù²ñ
+        // íŠ¸ëœìŠ¤í¼ ë‹¤ì´ë ‰ì…˜ = ë§¤ê°œë³€ìˆ˜ë¡œì˜ ë°©í–¥ì„ ë°˜í™˜í•¨
+        // ì´ê±¸ Vector3.forwardì™€ ë°”ê¾¸ë©´ ë°”ë¼ë³´ëŠ” ë°©í–¥ì— ë”°ë¼ ë°”ë€œ
         Vector3 look = transform.TransformDirection(Vector3.forward);
 
         Debug.DrawRay(transform.position + Vector3.up, look * 10, Color.red);
@@ -36,13 +40,13 @@ public class TestCollision : MonoBehaviour {
         RaycastHit[] hits;
         hits = Physics.RaycastAll(transform.position + Vector3.up, look, 10);
 
-        foreach(RaycastHit hit in hits) {
+        foreach (RaycastHit hit in hits)
+        {
             Debug.Log($"Raycast Hit : {hit.collider.gameObject.name}");
         }
 
         //if (Physics.Raycast(transform.position + Vector3.up, look, out hit, 10)) {
         //    Debug.Log($"Raycast Hit : {hit.collider.gameObject.name}");
         //}
-
     }
 }

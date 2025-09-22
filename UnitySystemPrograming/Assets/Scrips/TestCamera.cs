@@ -1,14 +1,13 @@
+ï»¿using UnityEngine;
 
-using UnityEngine;
-
-public class TestCamera : MonoBehaviour {
-
-    void Update() {
-        
-        if(Input.GetMouseButtonDown(0)) {
-
+public class TestCamera : MonoBehaviour
+{
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // ¾Æ·¡ ¼¼ÁÙÀ» À§¿¡ ÇÑÁÙ·Î ¸¸µë
+            // ì•„ë˜ ì„¸ì¤„ì„ ìœ„ì— í•œì¤„ë¡œ ë§Œë“¬
             //Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
             //Vector3 dir = mousePos - Camera.main.transform.position;
             //dir = dir.normalized;
@@ -20,10 +19,11 @@ public class TestCamera : MonoBehaviour {
 
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("wall"))) {
+            if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("wall")))
+            {
                 Debug.Log($"Raycast Camera : {hit.collider.gameObject.name}");
             }
-            // ¾Æ·¡³ª À§³ª °°À½
+            // ì•„ë˜ë‚˜ ìœ„ë‚˜ ê°™ìŒ
             //if (Physics.Raycast(Camera.main.transform.position, dir, out hit, 100.0f)) {
             //    Debug.Log($"Raycast Camera : {hit.collider.gameObject.name}");
             //}
