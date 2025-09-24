@@ -76,6 +76,10 @@ crashlytics-build.properties
 
 # Assets ignore
 /[Aa]ssets/Mini Simple Characters Skeleton Demo
+/[Aa]ssets/Cainos
+/[Aa]ssets/DogKnight
+/[Aa]ssets/Kevin Iglesias
+/[Aa]ssets/Unity UI Samples
 /[Aa]ssets/UnityTechnologies
 /[Aa]ssets/TutorialInfo
 /[Aa]ssets/JMO Assets
@@ -84,4 +88,6 @@ crashlytics-build.properties
 /[Aa]ssets/TextMesh Pro
 /[Aa]ssets/Resources/Animations
 /[Aa]ssets/Resources/Art
+/[Aa]ssets/Resources/Sounds
 /[Aa]ssets/Resources/Audio
+/[Aa]ssets/Resources/Prefabs
